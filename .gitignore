@@ -1,0 +1,4 @@
+node_modules
+htmls/*
+json_dbs/*
+!json_dbs/gpu_product_db.json
