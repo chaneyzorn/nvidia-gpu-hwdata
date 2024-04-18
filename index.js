@@ -1,4 +1,4 @@
-#! /bin/env node
+#! /usr/bin/env node
 
 import fetchGpuProductTable from "./lib/download-html.js";
 import parseGpuList from "./lib/parse-gpu-list.js";
@@ -7,10 +7,17 @@ import parse2json from "./lib/parse2json.js";
 import { writeFile } from "node:fs";
 
 async function doAll() {
-  const versions = ["515.76", "495.46", "470.141.03", "465.31"];
-  const contents = await Promise.all(versions.map((item) => fetchGpuProductTable(item)));
+  const versions = ["550.76", "515.76", "495.46", "470.141.03", "465.31"];
+  const contents = await Promise.all(
+    versions.map((item) => fetchGpuProductTable(item)),
+  );
   const jsons = await Promise.all(
-    contents.map((item) => parse2json(parseGpuList(item.content), `json_dbs/gpu_product_db_${item.version}.json`))
+    contents.map((item) =>
+      parse2json(
+        parseGpuList(item.content),
+        `json_dbs/gpu_product_db_${item.version}.json`,
+      ),
+    ),
   );
   const merged = Object.assign({}, ...jsons);
   const mergedContent = JSON.stringify(merged, Object.keys(merged).sort(), 2);
@@ -19,6 +26,8 @@ async function doAll() {
   });
 }
 
-doAll().catch((err) => {
-  console.log(`error: ${err}`);
-});
+// doAll().catch((err) => {
+//   console.log(`error: ${err}`);
+// });
+
+doAll()
