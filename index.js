@@ -7,7 +7,7 @@ import parse2json from "./lib/parse2json.js";
 import { writeFile } from "node:fs";
 
 async function doAll() {
-  const versions = ["550.76", "515.76", "495.46", "470.141.03", "465.31"];
+  const versions = ["550.90.07", "515.76", "495.46", "470.141.03", "465.31"];
   const contents = await Promise.all(
     versions.map((item) => fetchGpuProductTable(item)),
   );

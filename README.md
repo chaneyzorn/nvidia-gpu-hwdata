@@ -8,5 +8,6 @@ version:
 - 470.141.03
 - 495.46
 - 515.76
+- 550.90.07
 
 see `json_dbs/gpu_product_db.json`
